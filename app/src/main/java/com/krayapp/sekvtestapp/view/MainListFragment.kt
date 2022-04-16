@@ -1,4 +1,9 @@
 package com.krayapp.sekvtestapp.view
 
-class MainListFragment {
+import androidx.fragment.app.Fragment
+
+class MainListFragment:Fragment() {
+    companion object{
+        fun newInstance() = MainListFragment()
+    }
 }

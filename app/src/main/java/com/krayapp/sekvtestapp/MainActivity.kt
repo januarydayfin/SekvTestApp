@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.AppNavigator
+import com.krayapp.sekvtestapp.view.screens.MainListScreen
 import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        savedInstanceState ?: router.newRootScreen()
+        savedInstanceState ?: router.newRootScreen(MainListScreen)
     }
 
     override fun onResumeFragments() {
