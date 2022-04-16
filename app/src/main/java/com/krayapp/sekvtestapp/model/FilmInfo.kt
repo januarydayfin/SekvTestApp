@@ -1,7 +1,5 @@
 package com.krayapp.sekvtestapp.model
 
-import com.google.gson.annotations.Expose
-
 data class FilmInfo(
     val id: Int,
     val name: String,

@@ -9,6 +9,7 @@ data class FilmResponseDTO(
 
 data class FilmDTO(
     @Expose val id: Int,
+    @Expose val localized_name:String,
     @Expose val name: String,
     @Expose val year: Int,
     @Expose val rating: Double?,
