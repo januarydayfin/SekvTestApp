@@ -1,4 +1,4 @@
-package com.krayapp.sekvtestapp.model
+package com.krayapp.sekvtestapp.model.remoteAccess
 
 import retrofit2.Response
 import retrofit2.http.GET

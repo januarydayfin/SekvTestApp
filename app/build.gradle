@@ -56,9 +56,8 @@ dependencies {
     implementation "androidx.room:room-rxjava2:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
-    //Paging
-    def pagingVersion = "3.0.0"
-    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     //ViewBindingPropertyDelegate
     implementation "com.github.kirich1409:viewbindingpropertydelegate:1.5.0-beta01"
@@ -75,6 +74,9 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.okhttp3:okhttp:5.0.0-alpha.2"
+
+    //Cicerone
+    implementation "com.github.terrakok:cicerone:7.0"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'

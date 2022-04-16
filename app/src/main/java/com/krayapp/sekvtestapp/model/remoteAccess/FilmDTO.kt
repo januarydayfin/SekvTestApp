@@ -1,7 +1,6 @@
-package com.krayapp.sekvtestapp.model
+package com.krayapp.sekvtestapp.model.remoteAccess
 
 import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
 
 data class FilmResponseDTO(
     @Expose val films: List<FilmDTO>
@@ -9,7 +8,7 @@ data class FilmResponseDTO(
 data class FilmDTO(
     @Expose val id:Int,
     @Expose val name:String,
-    @Expose val yeat:Int,
+    @Expose val year:Int,
     @Expose val rating:Double?,
     @Expose val image_url:String,
     @Expose val description:String,
