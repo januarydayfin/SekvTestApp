@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/DefaultCardStyle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/margin_top">
+
+    <TextView
+        android:layout_marginHorizontal="60dp"
+        android:layout_marginVertical="20dp"
+        tools:text = "Drama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</androidx.cardview.widget.CardView>

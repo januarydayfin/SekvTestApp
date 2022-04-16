@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/recycler_film_size"
+    android:layout_height="@dimen/recycler_film_size"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/preview_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/hell"/>
+
+    <TextView
+        android:id="@+id/preview_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        android:layout_gravity="bottom"
+        android:background="@color/textview_transparent_black"
+        android:textAlignment="center"
+        tools:text="1+1"
+        tools:ignore="RtlCompat" />
+</androidx.cardview.widget.CardView>

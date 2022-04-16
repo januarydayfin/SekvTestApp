@@ -1,4 +1,6 @@
 package com.krayapp.sekvtestapp.view.adapter
 
-class MainListAdapter {
+import android.widget.ListAdapter
+
+class MainListAdapter(private val delegate: MainListDelegate):ListAdapter<MainListRecyclerViewItem> {
 }

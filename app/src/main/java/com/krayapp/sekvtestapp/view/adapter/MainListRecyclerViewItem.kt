@@ -1,15 +1,16 @@
 package com.krayapp.sekvtestapp.view.adapter
 
-sealed class MainListRecyclerViewItem {
+import com.krayapp.sekvtestapp.model.FilmInfo
+
+sealed class MainListRecyclerViewItem(val type: TestType) {
     class Title(
         val id: Int,
         val title: String
-    ) : MainListRecyclerViewItem()
+    ) : MainListRecyclerViewItem(TestType.TITLE)
     class Genre(
         val genre:String,
-    ):MainListRecyclerViewItem()
+    ):MainListRecyclerViewItem(TestType.GENRE)
     class Film(
-        val title:String,
-        val image:String
-    )
+        val film:FilmInfo
+    ):MainListRecyclerViewItem(TestType.FILM)
 }
