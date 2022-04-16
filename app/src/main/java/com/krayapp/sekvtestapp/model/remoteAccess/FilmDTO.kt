@@ -21,6 +21,7 @@ data class FilmDTO(
 fun FilmDTO.toFilmInfo() =
     FilmInfo(
         id = id,
+        localized_name = localized_name,
         name = name,
         year = year,
         rating = rating,
