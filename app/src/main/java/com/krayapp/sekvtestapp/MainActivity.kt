@@ -1,8 +1,8 @@
 package com.krayapp.sekvtestapp
 
+import android.net.ConnectivityManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.krayapp.sekvtestapp.presentation.OpenedFilmPresenter
 import com.krayapp.sekvtestapp.presentation.mvpPresenterInterface.IOpenedFilmPresenter
 import com.krayapp.sekvtestapp.view.MainListFragment
 import com.krayapp.sekvtestapp.view.adapter.holder.GenreViewHolder
@@ -12,6 +12,7 @@ import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity(), ActivityView {
     private val presenter:IOpenedFilmPresenter by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
