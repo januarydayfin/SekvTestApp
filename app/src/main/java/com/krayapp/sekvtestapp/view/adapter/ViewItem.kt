@@ -15,6 +15,4 @@ sealed class ViewItem(val type: TestType) {
     class Film(
         val film:FilmInfo
     ):ViewItem(TestType.FILM)
-
-
 }

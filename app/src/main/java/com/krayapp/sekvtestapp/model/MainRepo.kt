@@ -3,6 +3,8 @@ package com.krayapp.sekvtestapp.model
 import com.krayapp.sekvtestapp.model.remoteAccess.FilmSource
 import com.krayapp.sekvtestapp.model.remoteAccess.IMainRepo
 import com.krayapp.sekvtestapp.toFilmInfo
+import com.krayapp.sekvtestapp.toUniqueFilmList
+import com.krayapp.sekvtestapp.toUniqueGenreList
 import com.krayapp.sekvtestapp.toViewItemGenre
 import com.krayapp.sekvtestapp.view.adapter.ViewItem
 import kotlinx.coroutines.*
@@ -53,7 +55,7 @@ class MainRepo(private val remoteAccess: FilmSource) : IMainRepo {
     private fun setFilmListByGenre(genre: String): MutableList<ViewItem> {
         val filmList: MutableList<ViewItem> = mutableListOf()
         val arrayForSort: MutableList<FilmInfo> = mutableListOf()
-        for (film in unformattedFilmList.toSet().toList()) {
+        for (film in unformattedFilmList.toUniqueFilmList()) {
             if (film.genres.contains(genre)) {
                 arrayForSort.add(film)
             }
@@ -84,5 +86,17 @@ class MainRepo(private val remoteAccess: FilmSource) : IMainRepo {
         list.add(ViewItem.Title("Фильмы"))
         list.addAll(filmList)
         return list
+    }
+
+    override fun letGenreBlue(genreItem: String) {
+        val genreList: MutableList<ViewItem> = mutableListOf()
+        for (item in unformattedGenreList.toUniqueGenreList()){
+            if (item.equals(genreItem)){
+                genreList.add(item.toViewItemGenre(true))
+            }else{
+                genreList.add(item.toViewItemGenre())
+            }
+            genreSectionList = genreList
+        }
     }
 }

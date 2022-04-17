@@ -1,5 +1,6 @@
 package com.krayapp.sekvtestapp.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +19,7 @@ import com.krayapp.sekvtestapp.view.adapter.delegate.MainDelegate
 import com.krayapp.sekvtestapp.view.mvpView.MainListView
 import org.koin.android.ext.android.inject
 
-class  MainListFragment : Fragment(R.layout.main_list_layout), MainListView, MainDelegate {
+class MainListFragment : Fragment(R.layout.main_list_layout), MainListView, MainDelegate {
     companion object {
         fun newInstance() = MainListFragment()
     }
@@ -69,11 +70,8 @@ class  MainListFragment : Fragment(R.layout.main_list_layout), MainListView, Mai
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun setDefaultList(list: List<ViewItem>) {
-        adapter.setList(list).notifyDataSetChanged()
-    }
-
-    override fun setFilmList(list: List<ViewItem>, from: Int, itemCount: Int) {
         adapter.setList(list).notifyDataSetChanged()
     }
 

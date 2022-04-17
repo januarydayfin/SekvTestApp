@@ -20,11 +20,11 @@ fun FilmDTO.toFilmInfo() =
         genres = genres
     )
 
-fun String.toViewItemGenre() = ViewItem.Genre(genre = this)
-
-
-
+fun String.toViewItemGenre(isPicked:Boolean = false) = ViewItem.Genre(genre = this, isPicked)
 
 fun ViewGroup.inflate(@LayoutRes layout: Int, attachToRoof: Boolean = false): View = let {
     LayoutInflater.from(context).inflate(layout, it, attachToRoof)
 }
+fun MutableList<String>.toUniqueGenreList() = this.toSet().toList()
+fun MutableList<FilmInfo>.toUniqueFilmList() = this.toSet().toList()
+

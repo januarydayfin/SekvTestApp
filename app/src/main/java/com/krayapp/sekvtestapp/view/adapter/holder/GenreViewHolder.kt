@@ -20,6 +20,7 @@ class GenreViewHolder (view: View): RecyclerView.ViewHolder(view) {
         with(viewBinding){
             genre.text = item.genre
             if (item.isPicked){
+                root.setCardBackgroundColor(blueColor)
             }else{
                 root.setCardBackgroundColor(greyColor)
             }

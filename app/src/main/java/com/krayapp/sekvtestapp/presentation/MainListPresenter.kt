@@ -2,7 +2,6 @@ package com.krayapp.sekvtestapp.presentation
 
 import com.krayapp.sekvtestapp.model.remoteAccess.IMainRepo
 import com.krayapp.sekvtestapp.presentation.mvpPresenterInterface.IMainListPresenter
-import com.krayapp.sekvtestapp.view.adapter.ViewItem
 import com.krayapp.sekvtestapp.view.mvpView.MainListView
 import kotlinx.coroutines.*
 
@@ -18,12 +17,10 @@ class MainListPresenter(private val repo: IMainRepo) : IMainListPresenter {
     }
 
     override fun onGenreSelect(genre: String) {
-        val defaultSize = repo.getInitiateList().size - 1
-        val withFilmCount = repo.getGenreFilmList(genre).size - defaultSize
-        mainView.setFilmList(repo.getGenreFilmList(genre).toList(),from = defaultSize,withFilmCount)
+        repo.letGenreBlue(genre)
+        mainView.setDefaultList(repo.getGenreFilmList(genre).toList())
         mainView.toast("Загрузка фильмов по жанру $genre")
     }
-
 
     override fun getInitiateList() {
         baseJob?.cancel()

@@ -7,4 +7,5 @@ interface IMainRepo {
     suspend fun getServerData()
     fun getInitiateList():MutableList<ViewItem>
     fun getGenreFilmList(genre: String):MutableList<ViewItem>
+    fun letGenreBlue(genreItem:String)
 }
