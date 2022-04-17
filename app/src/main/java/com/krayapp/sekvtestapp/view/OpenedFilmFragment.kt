@@ -10,8 +10,11 @@ import com.krayapp.sekvtestapp.R
 import com.krayapp.sekvtestapp.databinding.OpenedFilmFragmentBinding
 import com.krayapp.sekvtestapp.model.FilmInfo
 import com.krayapp.sekvtestapp.model.remoteAccess.ImageLoader
+import com.krayapp.sekvtestapp.presentation.mvpPresenterInterface.IOpenedFilmPresenter
+import com.krayapp.sekvtestapp.view.mvpView.OpenedFilmView
+import org.koin.android.ext.android.inject
 
-class OpenedFilmFragment: Fragment(R.layout.opened_film_fragment) {
+class OpenedFilmFragment: Fragment(R.layout.opened_film_fragment),OpenedFilmView {
     companion object{
         private const val FILM_KEY = "FILM_KEY"
         fun newInstance(filmInfo: FilmInfo):Fragment{
@@ -23,6 +26,7 @@ class OpenedFilmFragment: Fragment(R.layout.opened_film_fragment) {
 
     private lateinit var  viewBinding:OpenedFilmFragmentBinding
     private lateinit var currentFilmInfo: FilmInfo
+    private val presenter:IOpenedFilmPresenter by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,11 +39,12 @@ class OpenedFilmFragment: Fragment(R.layout.opened_film_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        presenter.onAttachView(this)
         currentFilmInfo = arguments?.getParcelable(FILM_KEY)!!
-        setFilmInfo(currentFilmInfo)
+        presenter.updateFilmInfo(currentFilmInfo)
     }
 
-    private fun setFilmInfo(filmInfo: FilmInfo) {
+    override fun setFilmInfo(filmInfo: FilmInfo) {
         with(viewBinding){
             originalName.text = filmInfo.name
             year.text = filmInfo.year.toString()
