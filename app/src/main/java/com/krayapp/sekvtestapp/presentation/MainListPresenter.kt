@@ -20,8 +20,12 @@ class MainListPresenter(private val repo: IMainRepo) : IMainListPresenter {
         mainListView = view
         baseJob?.cancel()
         baseJob = baseScope.async {
-           mainListView.setFilmList(repo.getRemoteFilmList())
+           mainListView.setFilmList(repo.getServerData())
         }
+    }
+
+    override fun onGenreSelect(genre: String) {
+        TODO("Not yet implemented")
     }
 
 

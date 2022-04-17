@@ -18,15 +18,4 @@ data class FilmDTO(
     @Expose val genres: List<String>
 )
 
-fun FilmDTO.toFilmInfo() =
-    FilmInfo(
-        id = id,
-        localized_name = localized_name,
-        name = name,
-        year = year,
-        rating = rating,
-        image_url = image_url,
-        description = description,
-        genres = genres
-    )
 

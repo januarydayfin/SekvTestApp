@@ -6,4 +6,5 @@ import com.krayapp.sekvtestapp.view.mvpView.MainListView
 interface IMainListPresenter {
     fun showInfoByFilm(filmInfo: FilmInfo)
     fun onViewAttach(view:MainListView)
+    fun onGenreSelect(genre:String)
 }

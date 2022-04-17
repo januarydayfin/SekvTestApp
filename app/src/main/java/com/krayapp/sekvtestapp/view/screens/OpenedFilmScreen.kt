@@ -2,7 +2,6 @@ package com.krayapp.sekvtestapp.view.screens
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
-import com.github.terrakok.cicerone.Screen
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.krayapp.sekvtestapp.model.FilmInfo
 import com.krayapp.sekvtestapp.view.OpenedFilmFragment

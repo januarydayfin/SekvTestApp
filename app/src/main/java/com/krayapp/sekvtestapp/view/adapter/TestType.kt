@@ -1,3 +1,3 @@
 package com.krayapp.sekvtestapp.view.adapter
 
-enum class TestType {TITLE,GENRE,FILM}
+enum class TestType {TITLE,GENRE,FILM, NULLTYPE}
