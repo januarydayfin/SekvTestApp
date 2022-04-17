@@ -18,6 +18,6 @@ class FilmViewHolder (view: View): RecyclerView.ViewHolder(view) {
                 filmDelegate.onFilmPicked(item.film)
             }
         }
-        imageLoader.loadInto(item.film.image_url, viewBinding.previewImage)
+        imageLoader.loadPreview(item.film.image_url, viewBinding.previewImage)
     }
 }

@@ -14,11 +14,13 @@ class MainRepo(private val remoteAccess: FilmSource) : IMainRepo {
 
     private val unformattedFilmList: MutableList<FilmInfo> = mutableListOf()
 
+    private val defaultList:MutableList<ViewItem> = mutableListOf()
+
+    private var unformattedGenreList: MutableList<String> = mutableListOf()
 
 
     //получает данные с сервера
     override suspend fun getServerData() {
-            val unformattedGenreList: MutableList<String> = mutableListOf()
             try {
                 val response = remoteAccess.getMovieList()
                 if (response.isSuccessful) {
@@ -65,11 +67,10 @@ class MainRepo(private val remoteAccess: FilmSource) : IMainRepo {
 
     //отдает первый запрос, без фильмов, только тайтлы и жанры
     override fun getInitiateList(): MutableList<ViewItem> {
-        val list = mutableListOf<ViewItem>()
-            list.add(ViewItem.Title("Жанры"))
-            list.addAll(genreSectionList)
-            list.add(ViewItem.Title("Фильмы"))
-        return list
+            defaultList.add(ViewItem.Title("Жанры"))
+            defaultList.addAll(genreSectionList)
+            defaultList.add(ViewItem.Title("Фильмы"))
+        return defaultList
     }
 
     //отдает список с фильмами

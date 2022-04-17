@@ -14,10 +14,13 @@ class MainListPresenter(private val repo: IMainRepo) : IMainListPresenter {
 
     override fun onViewAttach(view: MainListView) {
         mainView = view
+        mainView.onLoad()
     }
 
     override fun onGenreSelect(genre: String) {
-        mainView.setList(repo.getGenreFilmList(genre).toList())
+        val defaultSize = repo.getInitiateList().size - 1
+        val withFilmCount = repo.getGenreFilmList(genre).size - defaultSize
+        mainView.setFilmList(repo.getGenreFilmList(genre).toList(),from = defaultSize,withFilmCount)
         mainView.toast("Загрузка фильмов по жанру $genre")
     }
 
@@ -26,7 +29,8 @@ class MainListPresenter(private val repo: IMainRepo) : IMainListPresenter {
         baseJob?.cancel()
         baseJob = baseScope.launch {
             repo.getServerData()
-            mainView.setList(repo.getInitiateList().toList())
+            mainView.setDefaultList(repo.getInitiateList().toList())
+            mainView.onLoadSuccess()
         }
     }
 

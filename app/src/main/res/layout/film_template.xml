@@ -2,7 +2,9 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/recycler_film_size"
     android:layout_height="@dimen/recycler_film_size"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="@dimen/margin_top"
+    android:layout_marginStart="@dimen/margin_top">
 
     <ImageView
         android:id="@+id/preview_image"
@@ -18,6 +20,9 @@
         android:layout_gravity="bottom"
         android:background="@color/textview_transparent_black"
         android:textAlignment="center"
+        android:maxLines="2"
+        android:ellipsize="end"
         tools:text="1+1"
-        tools:ignore="RtlCompat" />
+        tools:ignore="RtlCompat"
+        />
 </androidx.cardview.widget.CardView>

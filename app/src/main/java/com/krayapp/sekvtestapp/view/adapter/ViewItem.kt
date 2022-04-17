@@ -9,6 +9,7 @@ sealed class ViewItem(val type: TestType) {
 
     class Genre(
         val genre:String,
+        val isPicked:Boolean = false
     ):ViewItem(TestType.GENRE)
 
     class Film(
