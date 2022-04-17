@@ -47,8 +47,8 @@ class OpenedFilmFragment: Fragment(R.layout.opened_film_fragment),OpenedFilmView
     override fun setFilmInfo(filmInfo: FilmInfo) {
         with(viewBinding){
             originalName.text = filmInfo.name
-            year.text = filmInfo.year.toString()
-            rating.text = filmInfo.rating.toString()
+            year.text = "Год ${filmInfo.year.toString()}"
+            rating.text = "Рейтинг ${filmInfo.rating.toString()}"
             description.text = filmInfo.description
             ImageLoader.loadPoster(filmInfo.image_url, image)
             requireActivity().actionBar?.title = filmInfo.localized_name

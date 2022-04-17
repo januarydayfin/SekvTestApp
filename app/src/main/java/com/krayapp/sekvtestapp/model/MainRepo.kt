@@ -14,30 +14,30 @@ class MainRepo(private val remoteAccess: FilmSource) : IMainRepo {
 
     private val unformattedFilmList: MutableList<FilmInfo> = mutableListOf()
 
-    private val defaultList:MutableList<ViewItem> = mutableListOf()
+    private var defaultList: MutableList<ViewItem> = mutableListOf()
 
     private var unformattedGenreList: MutableList<String> = mutableListOf()
 
 
     //получает данные с сервера
     override suspend fun getServerData() {
-            try {
-                val response = remoteAccess.getMovieList()
-                if (response.isSuccessful) {
-                    response.body()!!.films.map {
-                        unformattedFilmList.add(it.toFilmInfo())
-                        unformattedGenreList.addAll(it.genres)
-                    }
-                } else {
-                    throw Exception("Ошибка на уровне запроса ${response.body()}")
+        try {
+            val response = remoteAccess.getMovieList()
+            if (response.isSuccessful) {
+                response.body()!!.films.map {
+                    unformattedFilmList.add(it.toFilmInfo())
+                    unformattedGenreList.addAll(it.genres)
                 }
-            } catch (e: HttpException) {
-                throw Exception(e)
-            } catch (e: Exception) {
-                throw Exception(e)
+            } else {
+                throw Exception("Ошибка на уровне запроса ${response.body()}")
             }
-            unformattedGenreList.sortBy { it }
-            appendGenreList(unformattedGenreList)
+        } catch (e: HttpException) {
+            throw Exception(e)
+        } catch (e: Exception) {
+            throw Exception(e)
+        }
+        unformattedGenreList.sortBy { it }
+        appendGenreList(unformattedGenreList)
     }
 
     //вспомогательная функция, удаляет дубли из списка жанров
@@ -53,7 +53,7 @@ class MainRepo(private val remoteAccess: FilmSource) : IMainRepo {
     private fun setFilmListByGenre(genre: String): MutableList<ViewItem> {
         val filmList: MutableList<ViewItem> = mutableListOf()
         val arrayForSort: MutableList<FilmInfo> = mutableListOf()
-        for (film in unformattedFilmList) {
+        for (film in unformattedFilmList.toSet().toList()) {
             if (film.genres.contains(genre)) {
                 arrayForSort.add(film)
             }
@@ -67,9 +67,10 @@ class MainRepo(private val remoteAccess: FilmSource) : IMainRepo {
 
     //отдает первый запрос, без фильмов, только тайтлы и жанры
     override fun getInitiateList(): MutableList<ViewItem> {
-            defaultList.add(ViewItem.Title("Жанры"))
-            defaultList.addAll(genreSectionList)
-            defaultList.add(ViewItem.Title("Фильмы"))
+        defaultList.clear()
+        defaultList.add(ViewItem.Title("Жанры"))
+        defaultList.addAll(genreSectionList)
+        defaultList.add(ViewItem.Title("Фильмы"))
         return defaultList
     }
 
@@ -77,6 +78,7 @@ class MainRepo(private val remoteAccess: FilmSource) : IMainRepo {
     override fun getGenreFilmList(genre: String): MutableList<ViewItem> {
         val filmList: MutableList<ViewItem> = setFilmListByGenre(genre)
         val list = mutableListOf<ViewItem>()
+        list.clear()
         list.add(ViewItem.Title("Жанры"))
         list.addAll(genreSectionList)
         list.add(ViewItem.Title("Фильмы"))
