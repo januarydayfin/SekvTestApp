@@ -5,5 +5,6 @@ import com.krayapp.sekvtestapp.view.adapter.ViewItem
 
 
 interface MainListView {
-    fun setFilmList(list:List<ViewItem>)
+    fun setList(list:List<ViewItem>)
+    fun toast(message:String)
 }

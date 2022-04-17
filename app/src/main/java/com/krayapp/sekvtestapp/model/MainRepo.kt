@@ -14,6 +14,7 @@ class MainRepo(private val remoteAccess: FilmSource) : IMainRepo {
     private val unformattedFilmList:MutableList<FilmInfo> = mutableListOf()
 
 
+    //получает данные с сервера
     override fun getServerData() {
         val unformattedGenreList: MutableList<String> = mutableListOf()
         try {
@@ -35,6 +36,17 @@ class MainRepo(private val remoteAccess: FilmSource) : IMainRepo {
         }
     }
 
+    //вспомогательная функция, удаляет дубли из списка жанров
+    private fun appendGenreList(list: MutableList<String>) {
+        val genreList: MutableList<ViewItem> = mutableListOf()
+        list.distinct()
+        for (genre in list) {
+            genreList.add(genre.toViewItemGenre())
+        }
+        genreSectionList = genreList
+    }
+
+    //проверяет список фильмов на соответствие жанров и сортирует по локализованному названию
     private fun setFilmListByGenre(genre: String):MutableList<ViewItem> {
         val filmList:MutableList<ViewItem> = mutableListOf()
         val arrayForSort:MutableList<FilmInfo> = mutableListOf()
@@ -50,6 +62,7 @@ class MainRepo(private val remoteAccess: FilmSource) : IMainRepo {
         return filmList
     }
 
+    //отдает первый запрос, без фильмов, только тайтлы и жанры
     override fun getInitiateList():MutableList<ViewItem> {
         val list = mutableListOf<ViewItem>()
         list.add(ViewItem.Title("Жанры"))
@@ -58,6 +71,7 @@ class MainRepo(private val remoteAccess: FilmSource) : IMainRepo {
         return list
     }
 
+    //отдает список с фильмами
     override fun getGenreFilmList(genre: String): MutableList<ViewItem> {
         val filmList:MutableList<ViewItem> = setFilmListByGenre(genre)
         val list = mutableListOf<ViewItem>()
@@ -66,15 +80,5 @@ class MainRepo(private val remoteAccess: FilmSource) : IMainRepo {
         list.add(ViewItem.Title("Фильмы"))
         list.addAll(filmList)
         return list
-    }
-
-
-    private fun appendGenreList(list: MutableList<String>) {
-        val genreList: MutableList<ViewItem> = mutableListOf()
-        list.distinct()
-        for (genre in list) {
-            genreList.add(genre.toViewItemGenre())
-        }
-        genreSectionList = genreList
     }
 }

@@ -8,6 +8,7 @@ import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.krayapp.sekvtestapp.view.screens.MainListScreen
 import org.koin.android.ext.android.inject
 
+
 class MainActivity : AppCompatActivity() {
     private val navigator = AppNavigator(this, android.R.id.content)
 

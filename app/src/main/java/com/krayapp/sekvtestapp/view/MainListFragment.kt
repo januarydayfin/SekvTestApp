@@ -2,9 +2,13 @@ package com.krayapp.sekvtestapp.view
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.github.terrakok.cicerone.Router
+import com.krayapp.sekvtestapp.R
+import com.krayapp.sekvtestapp.databinding.MainListLayoutBinding
 import com.krayapp.sekvtestapp.model.FilmInfo
 import com.krayapp.sekvtestapp.presentation.mvpPresenterInterface.IMainListPresenter
 import com.krayapp.sekvtestapp.view.adapter.MainListAdapter
@@ -14,11 +18,12 @@ import com.krayapp.sekvtestapp.view.mvpView.MainListView
 import com.krayapp.sekvtestapp.view.screens.OpenedFilmScreen
 import org.koin.android.ext.android.inject
 
-class MainListFragment:Fragment(), MainListView, MainDelegate {
+class MainListFragment:Fragment(R.layout.main_list_layout), MainListView, MainDelegate {
     companion object{
         fun newInstance() = MainListFragment()
     }
 
+    private val viewBinding = MainListLayoutBinding.inflate(layoutInflater)
     private val presenter: IMainListPresenter by inject()
     private val router:Router by inject()
     private val adapter = MainListAdapter(this)
@@ -44,21 +49,29 @@ class MainListFragment:Fragment(), MainListView, MainDelegate {
                     null -> oneColumn
                 }
             }
-
         }
+        with(viewBinding){
+            mainRecycler.layoutManager = layoutManager
+            mainRecycler.adapter = adapter
+        }
+
+
     }
 
-    override fun setFilmList(list: List<ViewItem>) {
-        adapter.setList(list)
+    override fun setList(list: List<ViewItem>) {
+        adapter.setList(list).notifyDataSetChanged()
+    }
+
+    override fun toast(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onFilmPicked(filmInfo: FilmInfo) {
-        router.navigateTo(OpenedFilmScreen(filmInfo))
+        //router.navigateTo(OpenedFilmScreen(filmInfo))
     }
 
     override fun onClickGenre(genre: String) {
         presenter.onGenreSelect(genre)
     }
-
 
 }

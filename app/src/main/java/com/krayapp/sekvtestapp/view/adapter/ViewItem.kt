@@ -15,8 +15,5 @@ sealed class ViewItem(val type: TestType) {
         val film:FilmInfo
     ):ViewItem(TestType.FILM)
 
-    class NullType(
-        val error: String
-    ):ViewItem(TestType.NULLTYPE)
 
 }
