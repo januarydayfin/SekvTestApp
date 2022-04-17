@@ -5,5 +5,5 @@ import retrofit2.http.GET
 
 interface FilmSource {
     @GET("sequeniatesttask/films.json")
-    fun getMovieList():Response<FilmResponseDTO>
+    suspend fun getMovieList():Response<FilmResponseDTO>
 }

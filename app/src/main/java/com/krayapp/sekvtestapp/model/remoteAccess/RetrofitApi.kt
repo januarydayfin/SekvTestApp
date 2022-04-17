@@ -9,9 +9,7 @@ object RetrofitApi {
         Retrofit.Builder()
             .baseUrl("https://s3-eu-west-1.amazonaws.com/")
             .addConverterFactory(
-                GsonConverterFactory.create(
-                    GsonBuilder().setLenient().create()
-                )
+                GsonConverterFactory.create()
             )
             .build()
             .create(FilmSource::class.java)

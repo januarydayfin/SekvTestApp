@@ -1,6 +1,7 @@
 package com.krayapp.sekvtestapp
 
 import com.github.terrakok.cicerone.Cicerone
+import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import com.krayapp.sekvtestapp.model.MainRepo
 import com.krayapp.sekvtestapp.model.remoteAccess.IMainRepo
@@ -17,8 +18,8 @@ object Koin {
         single { RetrofitApi.getFromApi() }
         single<IMainRepo> { MainRepo(remoteAccess = get()) }
 
-        single { cicerone.router }
-        single { cicerone.getNavigatorHolder() }
+        single<Router> { cicerone.router }
+        single<NavigatorHolder> { cicerone.getNavigatorHolder() }
 
 
         single<IMainListPresenter> { MainListPresenter(repo = get()) }

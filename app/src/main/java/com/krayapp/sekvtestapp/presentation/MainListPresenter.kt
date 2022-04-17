@@ -10,16 +10,10 @@ import kotlinx.coroutines.*
 class MainListPresenter(private val repo: IMainRepo) : IMainListPresenter {
     private lateinit var mainView: MainListView
     private var baseJob: Job? = null
-    private val baseScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
-
+    private val baseScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
 
     override fun onViewAttach(view: MainListView) {
         mainView = view
-        baseJob?.cancel()
-        baseJob = baseScope.launch {
-            repo.getServerData()
-            mainView.toast("Загрузка данных")
-        }
     }
 
     override fun onGenreSelect(genre: String) {
@@ -29,7 +23,11 @@ class MainListPresenter(private val repo: IMainRepo) : IMainListPresenter {
 
 
     override fun getInitiateList() {
-       mainView.setList(repo.getInitiateList().toList())
+        baseJob?.cancel()
+        baseJob = baseScope.launch {
+            repo.getServerData()
+            mainView.setList(repo.getInitiateList().toList())
+        }
     }
 
 }

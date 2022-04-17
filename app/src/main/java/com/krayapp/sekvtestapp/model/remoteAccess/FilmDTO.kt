@@ -13,8 +13,8 @@ data class FilmDTO(
     @Expose val name: String,
     @Expose val year: Int,
     @Expose val rating: Double?,
-    @Expose val image_url: String,
-    @Expose val description: String,
+    @Expose val image_url: String?,
+    @Expose val description: String?,
     @Expose val genres: List<String>
 )
 

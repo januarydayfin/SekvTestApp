@@ -15,8 +15,8 @@ fun FilmDTO.toFilmInfo() =
         name = name,
         year = year,
         rating = rating,
-        image_url = image_url,
-        description = description,
+        image_url = image_url ?: " ",
+        description = description ?: "",
         genres = genres
     )
 

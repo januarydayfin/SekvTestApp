@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.github.terrakok.cicerone.Router
 import com.krayapp.sekvtestapp.R
@@ -22,16 +23,17 @@ class MainListFragment:Fragment(R.layout.main_list_layout), MainListView, MainDe
     companion object{
         fun newInstance() = MainListFragment()
     }
-
-    private val viewBinding = MainListLayoutBinding.inflate(layoutInflater)
     private val presenter: IMainListPresenter by inject()
+
     private val router:Router by inject()
     private val adapter = MainListAdapter(this)
-
+    private lateinit var  recycler:RecyclerView
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.onViewAttach(this)
+        recycler = view.findViewById(R.id.main_recycler)
         setupRecycler()
+        presenter.getInitiateList()
     }
 
     private fun setupRecycler(){
@@ -50,12 +52,9 @@ class MainListFragment:Fragment(R.layout.main_list_layout), MainListView, MainDe
                 }
             }
         }
-        with(viewBinding){
-            mainRecycler.layoutManager = layoutManager
-            mainRecycler.adapter = adapter
-        }
 
-
+        recycler.layoutManager = layoutManager
+        recycler.adapter = adapter
     }
 
     override fun setList(list: List<ViewItem>) {

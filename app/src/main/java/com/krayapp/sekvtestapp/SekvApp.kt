@@ -9,7 +9,7 @@ class SekvApp:Application() {
         super.onCreate()
         startKoin{
             androidContext(this@SekvApp)
-            Koin.getModules()
+           modules(Koin.getModules())
         }
     }
 }
